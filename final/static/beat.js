@@ -1,0 +1,42 @@
+$(document).ready(function(){
+    fetch(`/beatLesson/${lessonId}`)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Lesson data not found');
+        }
+        return response.json();
+    })
+    .then(lesson => {
+        displayLessonContent(lesson); // Call a function to display lesson content
+    })
+    .catch(error => {
+        console.error('Error fetching lesson data:', error);
+    });
+    $("#continue").click(function(e){
+        getNext()
+    });
+})
+
+async function getNext() {
+    try {
+        const response = await fetch('/maxBeat'); 
+        const data = await response.json(); 
+        const nextLessonId = lessonId + 1;
+        console.log(data);
+        if (nextLessonId > data) {
+            window.location.href = '/step/0';
+        } else {
+            window.location.href = '/beat/' + nextLessonId;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        throw error; 
+    }
+}
+
+function displayLessonContent(lesson) {
+    console.log("lesson: ", lesson)
+    document.getElementById('lessonName').innerHTML = "Lesson " + lesson["id"] + ": " + lesson["name"];
+    document.getElementById('lessonDescription').innerHTML = lesson["description"]
+    document.getElementById('lessonContent').innerHTML = lesson["content"];
+}

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="../static/beat.js"></script>
+<script>
+    let lessonId = {{ lessonId|tojson| safe }};
+</script>
+<sub-title id="lessonName"></sub-title>
+<description id="lessonDescription"></description>
+<content id="lessonContent"></content>
+<button id = "continue" class="center continue">
+    continue
+</button>
+{% endblock %}
