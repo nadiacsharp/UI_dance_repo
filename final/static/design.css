@@ -47,3 +47,29 @@ content {
     margin-top: auto;
     margin-bottom: auto;
 }
+
+input[type=checkbox] {
+    width: 30px;
+    height: 30px;
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    
+}
+
+.vertical-line{
+    display: inline-block;
+    border-left: 3px solid #ccc;
+    margin: 0 10px;
+    height: 70px;
+}
+
+.pd{
+    padding-right: 24px;
+    /* margin: 80px; */
+}

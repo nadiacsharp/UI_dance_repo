@@ -28,6 +28,9 @@ class Lesson:
 
 # import data
 data = []
+
+#was giving me error so i had to put my full path - canyon 
+# with open("/Users/canyon/Documents/UI_dance_repo/final/data.csv", mode='r', encoding='utf-8') as csvfile:
 with open("data.csv", mode='r', encoding='utf-8') as csvfile:
     reader = csv.DictReader(csvfile)
     for lessonVals in reader:
