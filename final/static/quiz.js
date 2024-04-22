@@ -17,7 +17,7 @@ $(document).ready(function(){
 async function getNext() {
     try {
         const nextQuestionId = questionId + 1;
-        if (nextQuestionId > 3) {
+        if (nextQuestionId > 4) {
             window.location.href = '/quiz/results';
         } else {
             window.location.href = '/quiz/' + nextQuestionId;
@@ -34,7 +34,7 @@ function displayQuizContent(questionId) {
         document.getElementById('quizName').innerHTML = quizinfo[0]["quizName"];
         document.getElementById('quizDescription').innerHTML = quizinfo[0]["quizDescription"];
     }
-    else{
+    else if(questionId<=3){
         document.getElementById("continue").innerHTML = "Question " + quizinfo[questionId]["next_q"].toString(); 
         const $makeMedia = $("<div>")
         document.getElementById('quizName').innerHTML = quizinfo[questionId]["quizName"];
@@ -42,6 +42,13 @@ function displayQuizContent(questionId) {
         $("#vid").html(quizinfo[questionId]["video"]);
         document.getElementById('graph').innerHTML = createPattern();
         document.getElementById('checkboxes').innerHTML = createBoxes();
+        console.log(quizinfo[questionId-1])
+
+    }
+    else{
+        document.getElementById("continue").innerHTML = "Home"
+        document.getElementById('quizName').innerHTML = "Quiz Results"
+        document.getElementById('quizDescription').innerHTML = "Need to review anything?"
 
     }
 }
