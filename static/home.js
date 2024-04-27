@@ -3,6 +3,6 @@ $(document).ready(function(){
         window.location.href = '/beat/0';
     })
     $("#start-move").click(function(e){
-        window.location.href = '/move/0';
+        window.location.href = '/step/0';
     })
 })

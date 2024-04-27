@@ -12,7 +12,7 @@ $(document).ready(function(){
     .catch(error => {
         console.error('Error fetching lesson data:', error);
     });
-    $("#continue").click(function(e){
+    $("#continue-btn").click(function(e){
         getNext();
     });
 })
