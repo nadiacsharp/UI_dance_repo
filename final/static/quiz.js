@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+    let total = 0
     fetch(`/quiz/${questionId}`)
     .then(response => {
         if (!response.ok) {
@@ -8,9 +8,11 @@ $(document).ready(function(){
         return response.json();
     })
     displayQuizContent(questionId);
+    
     $("#continue").click(function(e){
         getChecked(questionId);
         getNext();
+        
     });
 })
 
@@ -18,7 +20,7 @@ async function getNext() {
     try {
         const nextQuestionId = questionId + 1;
         if (nextQuestionId > 4) {
-            window.location.href = '/quiz/results';
+            window.location.href = '/';
         } else {
             window.location.href = '/quiz/' + nextQuestionId;
         }
@@ -48,7 +50,20 @@ function displayQuizContent(questionId) {
     else{
         document.getElementById("continue").innerHTML = "Home"
         document.getElementById('quizName').innerHTML = "Quiz Results"
-        document.getElementById('quizDescription').innerHTML = "Need to review anything?"
+
+        allinfo = quizinfo
+        // console.log("ALL: ", allinfo[1])
+        let pls = getScore(allinfo)
+        console.log("SCOREEEEE: ", pls)
+        
+        document.getElementById('quizScore').innerHTML = pls + "/3 Questions Correct"
+        // document.getElementById('quizDescription').innerHTML = "Need to review anything?"
+        
+        
+        
+
+        // const $scoreDiv = $("<div>").text(total + "/3");
+
 
     }
 }
@@ -103,17 +118,69 @@ function createBoxes() {
 // see which boxes are checked and push user response to server
 function getChecked(questionId){
     let checkboxes = document.getElementsByName('box');
-    let result = [];
+    let answers = [];
     for (var i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
-            console.log(checkboxes[i])
-            result.push(checkboxes[i])
+            console.log(typeof checkboxes[i].id)
+            answers.push(checkboxes[i].id)
+        }
+    }
+    console.log("ALL CHECKED: ", answers)
+    saveAnswer(questionId, answers)
+
+    // $.ajax({
+    //     type: "POST",
+    //     url: "/submit_answer",
+    //     dataType: "json",
+    //     contentType: "application/json",
+    //     data: JSON.stringify({"id": questionId, "answers": answers}),
+    //     success: function(result){
+    //         console.log("SUCCESS: ", result["data"])
+    //     },
+    //     error: function(error){
+    //         console.log("error: ", error)
+    //     }
+
+    // });
+
+    // quizinfo[questionId]["userResponse"] = answers; 
+
+    //make sure server.py is updated
+    console.log(quizinfo[questionId])
+    console.log(quizinfo[questionId-1])
+
+}
+
+function saveAnswer(id, ans){
+    var toSave = {"id": id, "answers": ans}
+    $.ajax({
+        type: "POST",
+        url: "/submit_answer",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(toSave),
+        success: function(result){
+            console.log("SUCCESS: ", result["data"])
+        },
+        error: function(error){
+            console.log("error: ", error)
+        }
+
+    });
+
+}
+
+function getScore(info){
+    console.log("in func")
+    console.log(info[1]["userResponse"])
+    var score = 0; 
+    var len = Object.keys(info).length; 
+    for(var i = 1; i<len; i++){
+        let idstr = i //.toString()
+        if(info[idstr]["userResponse"].toString() === info[idstr]["ans_key"].toString()){
+            score = score + 1; 
         }
     }
 
-    quizinfo[questionId]["userResponse"] = result; 
-
-    //make sure server.py is updated
-    // console.log(quizinfo[questionId])
-
+    return score; 
 }
