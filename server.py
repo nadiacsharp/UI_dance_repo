@@ -7,8 +7,8 @@ app = Flask(__name__)
 quizinfo = {
    "0":{
       "id": 0, 
-      "quizName": "TESTQUIZ",
-      "quizDescription": "TEST : Let's see if you have found your style by taking this short quiz!",
+      "quizName": "QUIZ",
+      "quizDescription": "Let's see if you have found your style by taking this short quiz!",
       "video": "",
       "userResponse": [],
       "next_q": "1"
@@ -17,7 +17,7 @@ quizinfo = {
       "id": 1, 
       "quizName": "Question 1",
       "quizDescription": "On what counts are the accents of this song? Mark the corresponding boxes",
-      "video": "<iframe width='560' height='315' src='https://www.youtube.com/embed/eHqiwNCSKEE?si=rthflookxj6BiR1j&amp;controls=0&amp;start=78&amp;end=87' title='YouTube video player'' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>",
+      "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
       "next_q": "2"
    },
@@ -25,15 +25,15 @@ quizinfo = {
       "id": 2, 
       "quizName": "Question 2",
       "quizDescription": "When you count in a tempo that is double time, what counts are the accents of this song? Mark the corresponding boxes",
-      "video": "<iframe width='560' height='315' src='https://www.youtube.com/embed/eHqiwNCSKEE?si=rthflookxj6BiR1j&amp;controls=0&amp;start=78' title='YouTube video player'' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>",
+      "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
       "next_q": "3"
    },
    "3":{
       "id": 3, 
       "quizName": "Question 3",
-      "quizDescription": "When you count in a tempo that is half time, what counts are the accents of this song?",
-      "video": "<iframe width='560' height='315' src='https://www.youtube.com/embed/eHqiwNCSKEE?si=rthflookxj6BiR1j&amp;controls=0&amp;start=78' title='YouTube video player'' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>",
+      "quizDescription": "When you count in a tempo that is half time, what counts are the accents of this song? Mark the corresponding boxes",
+      "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
       "next_q": "results"
    },

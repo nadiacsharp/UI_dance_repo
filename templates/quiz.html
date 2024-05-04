@@ -5,20 +5,21 @@
     let questionId = {{ questionId|tojson| safe }};
     var quizinfo = JSON.parse('{{ quizinfo|tojson }}');
 </script>
-<sub-title id="quizName"></sub-title>
-<description id="quizDescription"></description>
 
-<!-- vids are not showing up for me because of my adblocker i think? lmk - canyon -->
-<div id="quizContent">
-    <div id="vid"></div>
+<div class="description">
+    <main-title id="quizName"></main-title>
+    <description class="blurb" id="quizDescription"></description>
+    
+    
 </div>
+<div class="green-bg">
+    <div id="vid"></div>
+    <div class="row flex-nowrap align-items-center" id="graph"></div>
 
-<div class="row flex-nowrap align-items-center" id="graph"></div>
-
-<div class="row flex-nowrap align-items-center" id="checkboxes"></div>
-
-<button id = "continue" class="center continue">
-    Start Quiz
-</button>
+    <div class="row flex-nowrap align-items-center" id="checkboxes"></div>
+    <button  id="continue-btn" class="center start-btn">
+        Start Quiz
+    </button>
+</div>
 
 {% endblock %}
