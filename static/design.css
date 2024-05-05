@@ -3,6 +3,10 @@
     src: url(static/calligraphy-font/CalligraphyWet-AX62.ttf);
   }
 
+button {
+    cursor:pointer;
+}
+
 /*navigation bar*/
 .navbar {
     background-color: black;
