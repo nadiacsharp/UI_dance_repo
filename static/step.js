@@ -39,4 +39,5 @@ function displayLessonContent(lesson) {
     document.getElementById('lessonName').innerHTML = "Lesson " + lesson["id"] + ": " + lesson["name"];
     document.getElementById('lessonDescription').innerHTML = lesson["description"]
     document.getElementById('lessonContent').innerHTML = lesson["content"];
+    $("#vid").html(lesson["vid"]);
 }

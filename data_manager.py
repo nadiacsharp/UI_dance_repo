@@ -5,7 +5,7 @@ class Lesson:
     beatId = -1
     stepId = -1
 
-    def __init__(self, name, type, description, content):
+    def __init__(self, name, type, description, content, vid):
         if type == "beat":
             Lesson.beatId += 1
             self.id = Lesson.beatId
@@ -16,6 +16,7 @@ class Lesson:
         self.type = type
         self.description = description
         self.content = content
+        self.vid = vid
 
     def to_dict(self):
         return {
@@ -23,7 +24,8 @@ class Lesson:
             "name": self.name,
             "type": self.type,
             "description": self.description,
-            "content": self.content
+            "content": self.content,
+            "vid": self.vid
         }
 
 # import data
@@ -38,7 +40,7 @@ with open("data.csv", mode='r', encoding='utf-8') as csvfile:
 beatLessons = []
 stepLessons = []
 for row in data:
-    lesson = Lesson(row["name"], row["type"], row["description"], row["content"])
+    lesson = Lesson(row["name"], row["type"], row["description"], row["content"], row["vid"])
     if lesson.type == "beat":
         beatLessons.append(lesson)
     else: stepLessons.append(lesson)
