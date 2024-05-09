@@ -19,6 +19,7 @@ quizinfo = {
       "quizDescription": "On what counts are the accents of this song? Mark the corresponding boxes",
       "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
+      "ans_key": ['box2', 'box4', 'box6', 'box8'],
       "next_q": "2"
    },
    "2":{
@@ -27,6 +28,7 @@ quizinfo = {
       "quizDescription": "When you count in a tempo that is double time, what counts are the accents of this song? Mark the corresponding boxes",
       "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
+      "ans_key": ['box3', 'box7'],
       "next_q": "3"
    },
    "3":{
@@ -35,6 +37,7 @@ quizinfo = {
       "quizDescription": "When you count in a tempo that is half time, what counts are the accents of this song? Mark the corresponding boxes",
       "video": "<iframe src='https://player.vimeo.com/video/942542601?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write' title='quizrec'></iframe>",
       "userResponse": [],
+      "ans_key": ['box1','box2', 'box3', 'box4', 'box5', 'box6', 'box7', 'box8'],
       "next_q": "results"
    },
 }
@@ -76,6 +79,19 @@ def get_maxBeat():
 @app.route('/maxStep', methods = ["GET"])
 def get_maxStep():
    return jsonify(data_manager.getMaxStep())
+
+@app.route('/submit_answer', methods=['GET', 'POST'])
+def submit_answer():
+   global quizinfo
+
+   json_data = request.get_json()
+   id = json_data["id"]
+   answers = json_data["answers"]
+   id = str(id)
+
+   quizinfo[id]["userResponse"] = answers
+   print(jsonify(quizinfo = quizinfo))
+   return jsonify(quizinfo = quizinfo)
 
 if __name__ == '__main__':
    app.run(debug = True)

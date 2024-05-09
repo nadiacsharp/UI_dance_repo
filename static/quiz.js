@@ -79,7 +79,7 @@ function createPattern() {
 function createBoxes() {
     const repeat = 8;
     let html = '';
-    html+='<div class="col first pd"><input type="checkbox" id="1" name="box" "></div>'
+    html+='<div class="col first pd"><input type="checkbox" id="box1" name="box" "></div>'
     for (let i = 1; i < repeat; i++) {
         const boxId = "box" + (i + 1).toString(); // Incrementing ID number
         html += `
@@ -88,7 +88,7 @@ function createBoxes() {
                 <span class="invis"></span>
                 <span class="invis"></span>
             </div>
-            <div class="col pd"><input type="checkbox" id="box${repeat + 1}" name="box" ></div>
+            <div class="col pd"><input type="checkbox" id="box${i + 1}" name="box" ></div>
         `;
     }
     // html += ``; // Last checkbox with incremented ID
@@ -141,8 +141,9 @@ function getScore(info){
     var len = Object.keys(info).length; 
     for(var i = 1; i<len; i++){
         let idstr = i //.toString()
-        console.log("USER REPS: ", info[idstr])
-        if(info[idstr]["userResponse"] === info[idstr]["ans_key"]){
+        console.log("USER REPS: ", info[idstr]["userResponse"])
+        console.log("USER check: ", info[idstr]["ans_key"])
+        if(JSON.stringify(info[idstr]["userResponse"]) === JSON.stringify(info[idstr]["ans_key"])){
             score = score + 1; 
         }
     }
